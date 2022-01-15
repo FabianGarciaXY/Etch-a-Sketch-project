@@ -1,0 +1,68 @@
+
+* {
+    color: rgb(229, 247, 247);
+}
+
+body {
+    background-color: rgb(2, 10, 20);
+    padding: 20px;
+    padding-bottom: 0;
+    text-align: center;
+    margin: 0;
+}
+
+.principal-content {
+    background-color: rgba(53, 18, 18, 0.945);
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.panel {
+    background-color: midnightblue;
+    align-self: center;
+}
+
+button {
+    background-color: maroon;
+    padding: 4px 10px;
+    border:3px solid;
+    border-radius: 2px;
+}
+
+.container {
+    width: 500px;
+    background-color: lightyellow;
+    height: 500px;
+    display: grid;
+    padding: 2px;
+    grid-template-columns: repeat(16, 20fr);
+    margin: 0 auto;
+/*     background-image: url('./images/white-texture-background2.jpg');
+ */    border-radius: 1px;
+    border-top: 2px;
+    border-right: 6px;
+    border-bottom: 5px;
+    border-left: 1px;
+    opacity: 0.9;
+    border-style:outset;
+}
+.grid-items {
+    border-radius: 3px;
+    border: 1px;
+    padding: 1px;
+
+}
+
+footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+/* R E P L A Y */
+.replay-window {
+    width: 900px;
+    height: 800px;
+    background-color: rgba(53, 18, 18, 0.945);
+}
