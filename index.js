@@ -27,11 +27,12 @@ const panel = document.querySelector('.panel');
 const game = document.querySelector('.game')
 
 // Replay window
-const replay = document.createElement('div')
-replay.classList.add('.replay')
-const replayButton = document.createElement('button')   
+const replayWindow = document.createElement('div');
+replayWindow.classList.add('replay-window');
+const replayButton = document.createElement('button');
+replayButton.classList.add('replay-button');
 replayButton.textContent = 'Replay';
-replay.appendChild(replayButton);
+replayWindow.appendChild(replayButton);
 
 
 //  On click Replay button
@@ -42,12 +43,12 @@ button.addEventListener('click', () => {
     setTimeout( () => {
     principalContent.removeChild(panel);
     principalContent.removeChild(game);
-    principalContent.appendChild(replay);
+    principalContent.appendChild(replayWindow);
 
-    principalContent.style.margin = 'auto'
-    principalContent.style.borderRadius = '6px'
+    principalContent.style.margin = 'auto';
+    principalContent.style.borderRadius = '6px';
     principalContent.style.height = '250px';
-    principalContent.style.width = '800px';
+    principalContent.style.width = '70%';
     principalContent.style.marginTop = '15%';
     principalContent.style.marginBottom = '25%';
     principalContent.style.boxShadow = '0px 0px 5px 3px white'
@@ -58,7 +59,3 @@ replayButton.addEventListener('click' , function() {
     window.location.reload(); 
     return false;
 })
-
-for (let i = 0; i < 5; i++){
-    setTimeout( () => {console.log(i)}, 1000)
-}

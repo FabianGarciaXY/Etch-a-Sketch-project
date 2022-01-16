@@ -14,7 +14,6 @@ body {
 .principal-content {
     background-color: rgba(53, 18, 18, 0.945);
     padding: 10px;
-    padding-bottom: 40px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -58,6 +57,15 @@ button {
     margin: -4%;
     cursor: cell;
     box-shadow: 2px 1px 10px 5px rgb(236, 236, 140);
+}
+
+.replay-window {
+    display: flex;
+    align-items: center;
+}
+.replay-button {
+    background-color: black;
+    padding: 10px 25px;
 }
 
 footer {
