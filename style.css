@@ -14,6 +14,7 @@ body {
 .principal-content {
     background-color: rgba(53, 18, 18, 0.945);
     padding: 10px;
+    padding-bottom: 40px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -35,11 +36,11 @@ button {
     background-color: lightyellow;
     height: 500px;
     display: grid;
-    padding: 2px;
+    padding: 0px;
     grid-template-columns: repeat(16, 20fr);
     margin: 0 auto;
 /*     background-image: url('./images/white-texture-background2.jpg');
- */    border-radius: 1px;
+ */    border-radius: 0px;
     border-top: 2px;
     border-right: 6px;
     border-bottom: 5px;
@@ -48,21 +49,18 @@ button {
     border-style:outset;
 }
 .grid-items {
-    border-radius: 3px;
+    border-radius: 1px;
     border: 1px;
     padding: 1px;
-
+}
+.grid-items:hover {
+    border-radius: 7%;
+    margin: -4%;
+    cursor: cell;
+    box-shadow: 2px 1px 10px 5px rgb(236, 236, 140);
 }
 
 footer {
     padding-top: 20px;
     padding-bottom: 20px;
-}
-
-
-/* R E P L A Y */
-.replay-window {
-    width: 900px;
-    height: 800px;
-    background-color: rgba(53, 18, 18, 0.945);
 }

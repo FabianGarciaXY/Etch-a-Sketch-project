@@ -14,8 +14,8 @@ const divs = document.querySelectorAll('.grid-items');
 for (let div of divs) {
     div.addEventListener('mouseover', (e) => {
         const divStyle = e.target.style;
-        divStyle.backgroundColor = 'rgb(200 122 200)';
-        divStyle.boxSizing = 'border-box'
+        divStyle.backgroundColor = '#000';
+        divStyle.boxSizing = 'border-box';
     })
 }
 
@@ -28,18 +28,37 @@ const game = document.querySelector('.game')
 
 // Replay window
 const replay = document.createElement('div')
-replay.classList.add('.replay-window')
-const replayButton = document.createElement('button');
+replay.classList.add('.replay')
+const replayButton = document.createElement('button')   
 replayButton.textContent = 'Replay';
-replay.appendChild(replayButton)
+replay.appendChild(replayButton);
 
 
+//  On click Replay button
 button.addEventListener('click', () => {
     for ( let divItem of divs) {
         divItem.style.backgroundColor = "";
     }
+    setTimeout( () => {
     principalContent.removeChild(panel);
     principalContent.removeChild(game);
-    principalContent.appendChild(replay)
+    principalContent.appendChild(replay);
+
+    principalContent.style.margin = 'auto'
+    principalContent.style.borderRadius = '6px'
+    principalContent.style.height = '250px';
+    principalContent.style.width = '800px';
+    principalContent.style.marginTop = '15%';
+    principalContent.style.marginBottom = '25%';
+    principalContent.style.boxShadow = '0px 0px 5px 3px white'
+    }, 500)
+});
+
+replayButton.addEventListener('click' , function() {
+    window.location.reload(); 
+    return false;
 })
-console.log(principalContent)
+
+for (let i = 0; i < 5; i++){
+    setTimeout( () => {console.log(i)}, 1000)
+}
