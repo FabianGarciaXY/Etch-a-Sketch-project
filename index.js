@@ -81,7 +81,7 @@ resizeButton.addEventListener('click', () => {
     interactContent.style.margin = '12% auto';
     interactContent.style.backgroundColor = 'cornsilk';
     interactContent.style.boxShadow = '0px 0px 5px 3px white'
-    }, 300);
+    }, 100);
 })
 
 
