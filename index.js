@@ -98,3 +98,13 @@ function logTextInput() {
     return console.log(input1, input2);
 }
 interactContent.addEventListener('click', logTextInput);
+
+// FUNCTION TO GENERATE A SPECIFIC NUMBER SQUARES PER SIDE 
+function(sideA, sideB) {
+    const totalOfSquares = 2;
+    
+    for (let square = 0; i < totalOfSquares; square ++) {
+        const item = document.createElement('div');
+        container.appendChild(item);
+    }
+}
