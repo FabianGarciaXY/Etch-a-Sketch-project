@@ -53,10 +53,7 @@ function createCells(a, b) {
             div.addEventListener('mouseover', (e) => {
                 e.target.style.backgroundColor = '#000';
             })
-
             container.appendChild(div);
-
-
         }
 
 
@@ -100,4 +97,21 @@ clearButton.addEventListener('click', () => {
     }
 });
 
-// Temp Button
+
+// P E N D I E N T E !!! 
+// @https://medium.com/@clergemarvin/how-to-create-a-modal-in-javascript-e9ddbff9869c
+// Temp Button 
+const tempButton = document.querySelector('#temp');
+
+document.addEventListener('DOMContentLoaded', () => {
+    tempButton.addEventListener('click', () => {
+        createModal()
+    });
+})
+
+function createModal() {
+    const modal = document.createElement('div');
+    modal.textContent = 'Hi';
+    console.log(modal)
+    interactContent.appendChild(modal);
+}
