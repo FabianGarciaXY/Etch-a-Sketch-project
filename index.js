@@ -1,31 +1,3 @@
-
-//CREATING  GRID CELLS
-const container = document.querySelector('.container');
-
-(function createCells() {
-    for (let i = 0; i < 256; i++) {
-        let item = document.createElement('div');
-        item.classList.add('grid-items');
-        container.appendChild(item);
-    }
-})();
-
-// MANIPULATING GRID CELLS ON MOUSEOVER
-
-const divs = document.querySelectorAll('.grid-items');
-
-function manipulateDivs() {
-    for (let div of divs) {
-        div.addEventListener('mouseover', (e) => {
-            const divStyle = e.target.style;
-            divStyle.backgroundColor = '#000';
-            divStyle.boxSizing = 'border-box';
-        });
-    }
-}
-
-manipulateDivs();
-
 // ADDING CLEAR && RESIZE BUTTONS && FUNCTIONALLITY
 const clearButton = document.querySelector('#clear-button');
 const setSquaresButton = document.querySelector('#set-squares');
@@ -56,42 +28,62 @@ containerResizeInputs.appendChild(numberOfSquaresInput2);
 resizeWindow.appendChild(containerResizeInputs);
 // ---------- End ------------
 
+//CREATING  GRID CELLS
+const container = document.querySelector('.container');
 
-//  On click CLEAR button
-clearButton.addEventListener('click', () => {
-    for ( let divItem of divs) {
-        divItem.style.backgroundColor = "";
-    }
-});
+createCells();
+function createCells(a, b) {
 
-// FUNCTION TO GENERATE A SPECIFIC NUMBER SQUARES PER SIDE 
+    if (a){
+        const totalOfSquares = a * b;
+        container.style.display = 'grid';
+        container.style.gridTemplateColumns = `repeat(${a}, 1fr)`;
 
-function generateSquares(sideA, sideB) {
 
-    const totalOfSquares = sideA * sideB;
-    const divs = document.querySelectorAll('.grid-items')
-    console.log(divs);
-
-    if (divs){ 
-        for (let div of divs) {
+        if(divs) {
+            const divs = document.querySelectorAll('.grid-items')
+            divs.forEach( (div) => {
             container.removeChild(div);
+            })
+        }
+
+        for (let item = 0; item < totalOfSquares; item ++) {
+            const div = document.createElement('div');
+            div.classList.add('grid-items');
+            div.addEventListener('mouseover', (e) => {
+                e.target.style.backgroundColor = '#000';
+            })
+
+            container.appendChild(div);
+
+
+        }
+
+
+    } else {
+        for (let i = 0; i < 256; i++) {
+            let div = document.createElement('div')
+            div.classList.add('grid-items');
+            container.appendChild(div);
         }
     }
-
-    container.style.display = 'grid';
-    container.style.gridTemplateColumns = `repeat(${sideA}, 1fr)`;
-
-    for (let square = 0; square < totalOfSquares; square ++) {
-        let item = document.createElement('div');
-        item.classList.add('grid-items');
-        container.appendChild(item);
-    }
-
-    console.log(manipulateDivs());
 }
 
+const divs = document.querySelectorAll('.grid-items')
+// MANIPULATING GRID CELLS ON MOUSEOVER
+function manipulateDivs() {
+    const divs = document.querySelectorAll('.grid-items')
+    for (let div of divs) {
+        div.addEventListener('mouseover', (e) => {
+            e.target.style.backgroundColor = '#000';
+        });
+    }
+};
+manipulateDivs();
+
+
 setSquaresButton.addEventListener('click', () => {
-    generateSquares(10, 10);
+    createCells(10, 10);
 })
 
 //Temporal reload button
@@ -99,3 +91,13 @@ const reloadButton = document.querySelector('#reload-button');
 reloadButton.addEventListener('click', () => {
     window.location.reload();
 });
+
+//  On click CLEAR button
+clearButton.addEventListener('click', () => {
+    const divs = document.querySelectorAll('.grid-items');
+    for ( let div of divs) {
+        div.style.backgroundColor = "";
+    }
+});
+
+// Temp Button
