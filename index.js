@@ -39,14 +39,12 @@ function createCells(a, b) {
         container.style.display = 'grid';
         container.style.gridTemplateColumns = `repeat(${a}, 1fr)`;
 
-
         if(divs) {
             const divs = document.querySelectorAll('.grid-items')
             divs.forEach( (div) => {
             container.removeChild(div);
             })
         }
-
         for (let item = 0; item < totalOfSquares; item ++) {
             const div = document.createElement('div');
             div.classList.add('grid-items');
@@ -55,7 +53,6 @@ function createCells(a, b) {
             })
             container.appendChild(div);
         }
-
 
     } else {
         for (let i = 0; i < 256; i++) {
@@ -77,7 +74,6 @@ function manipulateDivs() {
     }
 };
 manipulateDivs();
-
 
 setSquaresButton.addEventListener('click', () => {
     createCells(10, 10);
@@ -106,7 +102,7 @@ const tempButton = document.querySelector('#temp');
 document.addEventListener('DOMContentLoaded', () => {
     tempButton.addEventListener('click', () => {
         createModal()
-        document.body.style.backgroundColor = 'rgba(133, 131, 74, 0.479)';
+        document.body.style.backgroundColor = 'rgba(143, 131, 74, 0.480)';
     });
 })
 
@@ -114,5 +110,10 @@ function createModal() {
     const modal = document.createElement('div');
     modal.classList.add('modalElement');
     modal.textContent = 'Hi';
-    interactContent.appendChild(modal);
+    interactContent.appendChild(resizeWindow);
 }
+
+numberOfSquaresInput2.addEventListener('search', () => {
+    const xd = document.querySelector('#input1').value;
+    console.log(xd);
+})
