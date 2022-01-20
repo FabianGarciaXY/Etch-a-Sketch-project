@@ -106,12 +106,13 @@ const tempButton = document.querySelector('#temp');
 document.addEventListener('DOMContentLoaded', () => {
     tempButton.addEventListener('click', () => {
         createModal()
+        document.body.style.backgroundColor = 'rgba(133, 131, 74, 0.479)';
     });
 })
 
 function createModal() {
     const modal = document.createElement('div');
+    modal.classList.add('modalElement');
     modal.textContent = 'Hi';
-    console.log(modal)
     interactContent.appendChild(modal);
 }

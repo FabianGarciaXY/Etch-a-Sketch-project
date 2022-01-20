@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: rgba(252, 248, 199, 0.753);
+    background-color: rgba(252, 248, 199, 0.849);
     padding-bottom: 0px;
     text-align: center;
     margin: 0px 0px;
@@ -87,6 +87,13 @@ h1 {
 .squares-input {
     background-color: burlywood;
     color: black;
+}
+
+.modalElement {
+    background-color: aquamarine;
+    position: absolute;
+    width: 42%;
+    height: 20%;
 }
 
 footer {
