@@ -9,7 +9,7 @@ const game = document.querySelector('.game');
 const resizeWindow = document.createElement('div');
 const containerResizeInputs = document.createElement('div');
 const numberOfSquaresInput1 = document.createElement('input');
-const numberOfSquaresInput2 = document.createElement('div');
+let numberOfSquaresInput2 = document.createElement('div');
 const numberOfSquaresQuestion = document.createElement('p');
 
                 /*Adding classes anda attributes*/
@@ -26,6 +26,8 @@ resizeWindow.appendChild(numberOfSquaresQuestion);
 containerResizeInputs.appendChild(numberOfSquaresInput1);
 containerResizeInputs.appendChild(numberOfSquaresInput2);
 resizeWindow.appendChild(containerResizeInputs);
+resizeWindow.appendChild(setSquaresButton);
+
 // ---------- End ------------
 
 //CREATING  GRID CELLS
@@ -76,7 +78,8 @@ function manipulateDivs() {
 manipulateDivs();
 
 setSquaresButton.addEventListener('click', () => {
-    createCells(10, 10);
+    const numberOfCells = document.querySelector('#input1').value;
+    createCells(numberOfCells, numberOfCells);
 })
 
 //Temporal reload button
@@ -113,7 +116,6 @@ function createModal() {
     interactContent.appendChild(resizeWindow);
 }
 
-numberOfSquaresInput2.addEventListener('search', () => {
-    const xd = document.querySelector('#input1').value;
-    console.log(xd);
+numberOfSquaresInput1.addEventListener('input', function(){
+    numberOfSquaresInput2.textContent = document.querySelector('#input1').value;
 })
