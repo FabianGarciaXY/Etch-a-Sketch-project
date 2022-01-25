@@ -7,23 +7,30 @@ const game = document.querySelector('.game');
 
 // EMERGING REPLAY WINDOW && REPLAY BUTTON && VALUES INPUTS
 const resizeWindow = document.createElement('div');
+const exitFromWindow = document.createElement('div');
 const containerResizeInputs = document.createElement('div');
+const spcBtwInputs = document.createElement('div');
 const numberOfSquaresInput1 = document.createElement('input');
 let numberOfSquaresInput2 = document.createElement('div');
 const numberOfSquaresQuestion = document.createElement('p');
 
                 /*Adding classes anda attributes*/
 numberOfSquaresInput1.setAttribute('id', 'input1');
-numberOfSquaresInput2.setAttribute('id', 'input2');
 numberOfSquaresInput1.setAttribute('type', 'number');
+numberOfSquaresInput2.setAttribute('id', 'input2');
+spcBtwInputs.textContent = ' x ';
 resizeWindow.classList.add('resize-window');
+exitFromWindow.classList.add('exitButton');
 containerResizeInputs.classList.add('container-resize-inputs')
 numberOfSquaresInput1.classList.add('squares-input');
 numberOfSquaresInput2.classList.add('squares-input');
 numberOfSquaresQuestion.textContent = 'How many items do you want?';
+exitFromWindow.textContent = 'X';
 
+resizeWindow.appendChild(exitFromWindow);
 resizeWindow.appendChild(numberOfSquaresQuestion);
 containerResizeInputs.appendChild(numberOfSquaresInput1);
+containerResizeInputs.appendChild(spcBtwInputs);
 containerResizeInputs.appendChild(numberOfSquaresInput2);
 resizeWindow.appendChild(containerResizeInputs);
 resizeWindow.appendChild(setSquaresButton);
@@ -79,6 +86,14 @@ manipulateDivs();
 
 setSquaresButton.addEventListener('click', () => {
     const numberOfCells = document.querySelector('#input1').value;
+    if (numberOfCells < 1) {
+        alert('Must be a greater than 0');
+        return
+    } else if (numberOfCells > 99) {
+        alert('Must be a number less than 100');
+        return
+    }
+
     createCells(numberOfCells, numberOfCells);
 })
 
@@ -118,4 +133,9 @@ function createModal() {
 
 numberOfSquaresInput1.addEventListener('input', function(){
     numberOfSquaresInput2.textContent = document.querySelector('#input1').value;
+})
+
+
+exitFromWindow.addEventListener('click', () => {
+    interactContent.removeChild(resizeWindow);
 })
