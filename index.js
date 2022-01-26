@@ -81,11 +81,14 @@ const divs = document.querySelectorAll('.grid-items')
 function manipulateDivs() {
     const divs = document.querySelectorAll('.grid-items')
     for (let div of divs) {
-        div.addEventListener('mouseover', (e) => {
-            e.target.style.backgroundColor = '#000';
-        });
-    }
-};
+        
+        div.addEventListener('mouseover', divManipulation)
+    };
+}
+
+function divManipulation(e) {
+    e.target.style.backgroundColor = '#000';
+}
 manipulateDivs();
 
 setSquaresButton.addEventListener('click', () => {
@@ -97,7 +100,6 @@ setSquaresButton.addEventListener('click', () => {
         alert('Must be a number less than 100');
         return
     }
-
     createCells(numberOfCells, numberOfCells);
     interactContent.removeChild(resizeWindow);
     resizeWindowState = 2;
@@ -122,10 +124,14 @@ clearButton.addEventListener('click', () => {
 // P E N D I E N T E !!! 
 // @https://medium.com/@clergemarvin/how-to-create-a-modal-in-javascript-e9ddbff9869c
 // Temp Button 
-const tempButton = document.querySelector('#temp');
+const resizeButton = document.querySelector('#resize');
 
 document.addEventListener('DOMContentLoaded', () => {
-    tempButton.addEventListener('click', () => {
+    resizeButton.addEventListener('click', () => {
+        const divs = document.querySelectorAll('.grid-items');
+        for (let item of divs) { 
+            item.removeEventListener('mouseover', divManipulation);
+        }
         createModal();
         resizeWindowState = 1;
         changeBkgColor();
@@ -135,7 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function createModal() {
     const modal = document.createElement('div');
     modal.classList.add('modalElement');
-    modal.textContent = 'Hi';
     interactContent.appendChild(resizeWindow);
 }
 
@@ -153,15 +158,12 @@ numberOfSquaresInput1.addEventListener('input', function(){
 });
 
 exitFromWindow.addEventListener('click', () => {
+    const divs = document.querySelectorAll('.grid-items');
+        for (let item of divs) { 
+            item.addEventListener('mouseover', divManipulation);
+        }
     interactContent.removeChild(resizeWindow);
     resizeWindowState = 2;
     changeBkgColor();
+
 });
-
-
-
-
-function blockActions() {
-    divs.removeEventListener('mouseover', () => manipulateDivs())
-}
-blockActions()
