@@ -4,9 +4,11 @@ const setSquaresButton = document.querySelector('#set-squares');
 const interactContent = document.querySelector('.interact-content');
 const panel = document.querySelector('.panel-container');
 const game = document.querySelector('.game');
+let resizeWindowState = 0;
 
 // EMERGING REPLAY WINDOW && REPLAY BUTTON && VALUES INPUTS
 const resizeWindow = document.createElement('div');
+const resizeWindowContainer = document.createElement('div');
 const exitFromWindow = document.createElement('div');
 const containerResizeInputs = document.createElement('div');
 const spcBtwInputs = document.createElement('div');
@@ -20,20 +22,22 @@ numberOfSquaresInput1.setAttribute('type', 'number');
 numberOfSquaresInput2.setAttribute('id', 'input2');
 spcBtwInputs.textContent = ' x ';
 resizeWindow.classList.add('resize-window');
+resizeWindowContainer.classList.add('resize-window-container');
 exitFromWindow.classList.add('exitButton');
-containerResizeInputs.classList.add('container-resize-inputs')
+containerResizeInputs.classList.add('container-resize-inputs');
 numberOfSquaresInput1.classList.add('squares-input');
 numberOfSquaresInput2.classList.add('squares-input');
 numberOfSquaresQuestion.textContent = 'How many items do you want?';
 exitFromWindow.textContent = 'X';
 
 resizeWindow.appendChild(exitFromWindow);
-resizeWindow.appendChild(numberOfSquaresQuestion);
+resizeWindow.appendChild(resizeWindowContainer);
+resizeWindowContainer.appendChild(numberOfSquaresQuestion);
 containerResizeInputs.appendChild(numberOfSquaresInput1);
 containerResizeInputs.appendChild(spcBtwInputs);
 containerResizeInputs.appendChild(numberOfSquaresInput2);
-resizeWindow.appendChild(containerResizeInputs);
-resizeWindow.appendChild(setSquaresButton);
+resizeWindowContainer.appendChild(containerResizeInputs);
+resizeWindowContainer.appendChild(setSquaresButton);
 
 // ---------- End ------------
 
@@ -89,12 +93,15 @@ setSquaresButton.addEventListener('click', () => {
     if (numberOfCells < 1) {
         alert('Must be a greater than 0');
         return
-    } else if (numberOfCells > 99) {
+    } else if (numberOfCells > 99 || numberOfCells.length > 3) {
         alert('Must be a number less than 100');
         return
     }
 
     createCells(numberOfCells, numberOfCells);
+    interactContent.removeChild(resizeWindow);
+    resizeWindowState = 2;
+    changeBkgColor();
 })
 
 //Temporal reload button
@@ -119,8 +126,9 @@ const tempButton = document.querySelector('#temp');
 
 document.addEventListener('DOMContentLoaded', () => {
     tempButton.addEventListener('click', () => {
-        createModal()
-        document.body.style.backgroundColor = 'rgba(143, 131, 74, 0.480)';
+        createModal();
+        resizeWindowState = 1;
+        changeBkgColor();
     });
 })
 
@@ -131,11 +139,29 @@ function createModal() {
     interactContent.appendChild(resizeWindow);
 }
 
+function changeBkgColor() {
+    if (resizeWindowState === 1) {
+        document.body.style.backgroundColor = 'rgba(143, 131, 74, 0.480)';
+    } else if(resizeWindowState === 2){
+        document.body.style.backgroundColor = 'rgba(252, 248, 199, 0.849)';
+    }
+
+}
+
 numberOfSquaresInput1.addEventListener('input', function(){
     numberOfSquaresInput2.textContent = document.querySelector('#input1').value;
-})
-
+});
 
 exitFromWindow.addEventListener('click', () => {
     interactContent.removeChild(resizeWindow);
-})
+    resizeWindowState = 2;
+    changeBkgColor();
+});
+
+
+
+
+function blockActions() {
+    divs.removeEventListener('mouseover', () => manipulateDivs())
+}
+blockActions()

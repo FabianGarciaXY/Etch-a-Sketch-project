@@ -22,6 +22,7 @@ h1 {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+
 }
 .panel-container {
     display: flex;
@@ -33,14 +34,14 @@ h1 {
     padding: 4%;
     justify-content: center;
     gap: 15px;
-
+    border-radius: 0 20px 0 20px;
 }
 
 .panel-button {
     background-color: rgb(196, 129, 129);
     padding: 4px 10px;
     border:3px solid;
-    border-radius: 2px; 
+    border-radius: 0 10px 10px 0; 
 }
 .resize-button-conf {
     background-color: rgb(196, 129, 129);
@@ -81,12 +82,29 @@ h1 {
     flex-direction: column;
     align-items: center;
     color: black;
-    padding: 1% 7%;
     border: solid black;
+    border-radius: 0 20px 0 20px;
+    padding: 1%;
+    width: 50%;
+}
+.resize-window-container{
+    padding: 1%;
+    margin: 1% 0%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 .exitButton {
     background-color: burlywood;
     align-self: flex-end;
+    cursor: pointer;
+}
+button {
+    background-color: rgb(196, 129, 129);
+}
+button:hover {
+    transform:scale(1.03);
+    box-shadow: 1px 1px 5px 3px white;
     cursor: pointer;
 }
 
@@ -94,7 +112,8 @@ h1 {
     color: black;
     display: flex;
     gap: 10px;
-
+    max-width: fit-content;
+    overflow-x: hidden;
 }
 .squares-input {
     background-color: burlywood;
