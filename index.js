@@ -1,6 +1,8 @@
 // ADDING CLEAR && RESIZE BUTTONS && FUNCTIONALLITY
 const clearButton = document.querySelector('#clear-button');
 const setSquaresButton = document.querySelector('#set-squares');
+const rainbowButton = document.querySelector('#rainbow');
+const allButtons = document.querySelectorAll('button');
 const interactContent = document.querySelector('.interact-content');
 const panel = document.querySelector('.panel-container');
 const game = document.querySelector('.game');
@@ -79,7 +81,7 @@ const divs = document.querySelectorAll('.grid-items')
 function manipulateDivs() {
     const divs = document.querySelectorAll('.grid-items')
     for (let div of divs) {
-        div.addEventListener('mouseover', divManipulation)
+        div.addEventListener('mouseover', divManipulation);
     };
 }
 
@@ -154,9 +156,16 @@ function createModal() {
 
 function changeBkgColor() {
     if (resizeWindowState === 1) {
-        document.body.style.backgroundColor = 'rgba(143, 131, 74, 0.480)';
+        document.body.style.backgroundColor = 'rgb(102, 79, 75)';
+        panel.style.backgroundColor = 'rgb(187, 177, 136)';
+        container.style.backgroundColor = 'rgba(155, 155, 143, 0.932)';
+        panel.style.border = 'white';
+
     } else if(resizeWindowState === 2){
-        document.body.style.backgroundColor = 'rgba(252, 248, 199, 0.849)';
+        document.body.style.backgroundColor = 'rgb(119, 98, 94)';
+        panel.style.backgroundColor = 'rgb(250, 234, 173)';
+        container.style.backgroundColor = 'lightyellow';
+        panel.style.border = 'solid rgb(80, 24, 24)';
     }
 }
 
@@ -164,8 +173,8 @@ function changeBkgColor() {
 game.addEventListener('click', colorActivation);
 
 function colorActivation(e) {
+
     const divs = document.querySelectorAll('.grid-items');
-    console.log(e.target.style.backgroundColor);
 
     if (e.target.style.backgroundColor === ''){
 
@@ -180,4 +189,30 @@ function colorActivation(e) {
     }
 }
 
+allButtons.forEach( button => {
+    button.addEventListener('click', function divManipulation(e) {
+        e.target.style.backgroundColor = ramdomColor();
+    });
+}
+)
 
+function ramdomColor() {
+    a = Math.trunc(Math.random() * 255);
+    b = Math.trunc(Math.random() * 255);
+    c = Math.trunc(Math.random() * 255);
+
+    return `rgb(${a} ${b} ${c})`;
+}
+
+// Pendiente FIX
+// When we click on any of the squares it does not stops painting the screen and vice versa...
+rainbowButton.addEventListener('click',  ramdomColorHover);
+
+function ramdomColorHover() {
+    const divs = document.querySelectorAll('.grid-items');
+    for (let div of divs) {
+        div.addEventListener('mouseover', (e) => {
+            e.target.style.backgroundColor = ramdomColor();
+        })
+    }
+}
