@@ -61,9 +61,7 @@ function createCells(a, b) {
         for (let item = 0; item < totalOfSquares; item ++) {
             const div = document.createElement('div');
             div.classList.add('grid-items');
-            div.addEventListener('mouseover', (e) => {
-                e.target.style.backgroundColor = '#000';
-            })
+            div.addEventListener('mouseover', divManipulation)
             container.appendChild(div);
         }
 
@@ -81,7 +79,6 @@ const divs = document.querySelectorAll('.grid-items')
 function manipulateDivs() {
     const divs = document.querySelectorAll('.grid-items')
     for (let div of divs) {
-        
         div.addEventListener('mouseover', divManipulation)
     };
 }
@@ -102,7 +99,7 @@ setSquaresButton.addEventListener('click', () => {
     }
     createCells(numberOfCells, numberOfCells);
     interactContent.removeChild(resizeWindow);
-    resizeWindowState = 2;
+        resizeWindowState = 2;
     changeBkgColor();
 })
 
@@ -120,10 +117,7 @@ clearButton.addEventListener('click', () => {
     }
 });
 
-
-// P E N D I E N T E !!! 
-// @https://medium.com/@clergemarvin/how-to-create-a-modal-in-javascript-e9ddbff9869c
-// Temp Button 
+// Resize Button 
 const resizeButton = document.querySelector('#resize');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -138,21 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 })
 
-function createModal() {
-    const modal = document.createElement('div');
-    modal.classList.add('modalElement');
-    interactContent.appendChild(resizeWindow);
-}
-
-function changeBkgColor() {
-    if (resizeWindowState === 1) {
-        document.body.style.backgroundColor = 'rgba(143, 131, 74, 0.480)';
-    } else if(resizeWindowState === 2){
-        document.body.style.backgroundColor = 'rgba(252, 248, 199, 0.849)';
-    }
-
-}
-
 numberOfSquaresInput1.addEventListener('input', function(){
     numberOfSquaresInput2.textContent = document.querySelector('#input1').value;
 });
@@ -165,5 +144,40 @@ exitFromWindow.addEventListener('click', () => {
     interactContent.removeChild(resizeWindow);
     resizeWindowState = 2;
     changeBkgColor();
-
 });
+
+function createModal() {
+    const modal = document.createElement('div');
+    modal.classList.add('modalElement');
+    interactContent.appendChild(resizeWindow);
+}
+
+function changeBkgColor() {
+    if (resizeWindowState === 1) {
+        document.body.style.backgroundColor = 'rgba(143, 131, 74, 0.480)';
+    } else if(resizeWindowState === 2){
+        document.body.style.backgroundColor = 'rgba(252, 248, 199, 0.849)';
+    }
+}
+
+// Function to activate painting the area of game
+game.addEventListener('click', colorActivation);
+
+function colorActivation(e) {
+    const divs = document.querySelectorAll('.grid-items');
+    console.log(e.target.style.backgroundColor);
+
+    if (e.target.style.backgroundColor === ''){
+
+        e.target.style.backgroundColor = 'rgb(0 0 0)'
+        for (let div of divs) {
+            div.addEventListener('mouseover', divManipulation)
+        }
+    } else if (e.target.style.backgroundColor === 'rgb(0, 0, 0)') {
+        for (let div of divs) {
+            div.removeEventListener('mouseover', divManipulation);
+        }
+    }
+}
+
+
