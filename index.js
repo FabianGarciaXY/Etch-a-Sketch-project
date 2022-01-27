@@ -2,11 +2,14 @@
 const clearButton = document.querySelector('#clear-button');
 const setSquaresButton = document.querySelector('#set-squares');
 const rainbowButton = document.querySelector('#rainbow');
+const blackButton = document.querySelector('#black');
+const inputColor = document.querySelector('#input-color')
 const allButtons = document.querySelectorAll('button');
 const interactContent = document.querySelector('.interact-content');
 const panel = document.querySelector('.panel-container');
 const game = document.querySelector('.game');
 let resizeWindowState = 0;
+let rainbow = false;
 
 // EMERGING REPLAY WINDOW && REPLAY BUTTON && VALUES INPUTS
 const resizeWindow = document.createElement('div');
@@ -86,7 +89,13 @@ function manipulateDivs() {
 }
 
 function divManipulation(e) {
-    e.target.style.backgroundColor = '#000';
+    if (rainbow === 'true') {
+        e.target.style.backgroundColor = ramdomColor();
+    } else if (rainbow === 'false'){
+        e.target.style.backgroundColor = inputColor.value;
+    } else {
+        e.target.style.backgroundColor = '#000';
+    }
 }
 manipulateDivs();
 
@@ -177,12 +186,10 @@ function colorActivation(e) {
     const divs = document.querySelectorAll('.grid-items');
 
     if (e.target.style.backgroundColor === ''){
-
-        e.target.style.backgroundColor = 'rgb(0 0 0)'
         for (let div of divs) {
             div.addEventListener('mouseover', divManipulation)
         }
-    } else if (e.target.style.backgroundColor === 'rgb(0, 0, 0)') {
+    } else if (e.target.style.backgroundColor) {
         for (let div of divs) {
             div.removeEventListener('mouseover', divManipulation);
         }
@@ -204,15 +211,22 @@ function ramdomColor() {
     return `rgb(${a} ${b} ${c})`;
 }
 
-// Pendiente FIX
-// When we click on any of the squares it does not stops painting the screen and vice versa...
 rainbowButton.addEventListener('click',  ramdomColorHover);
+blackButton.addEventListener('click', blackColorHover);
+inputColor.addEventListener('click', selectColor)
+
 
 function ramdomColorHover() {
-    const divs = document.querySelectorAll('.grid-items');
-    for (let div of divs) {
-        div.addEventListener('mouseover', (e) => {
-            e.target.style.backgroundColor = ramdomColor();
-        })
-    }
+    rainbow = 'true';
+    manipulateDivs;
+}
+
+function blackColorHover() {
+    rainbow = '';
+    manipulateDivs;
+}
+
+function selectColor() {
+    rainbow = 'false';
+    manipulateDivs;
 }
